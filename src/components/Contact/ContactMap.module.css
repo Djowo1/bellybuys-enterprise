@@ -1,0 +1,121 @@
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+.mapWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.mapOverlay {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.locationCard {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  pointer-events: auto;
+  border: 1px solid rgba(0, 135, 81, 0.1);
+}
+
+[data-theme="dark"] .locationCard {
+  background: rgba(26, 26, 26, 0.95);
+  border-color: rgba(0, 135, 81, 0.2);
+}
+
+.locationIcon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-orange));
+  color: white;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.locationInfo h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+}
+
+.locationInfo p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+}
+
+.directionsButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all var(--transition-base);
+}
+
+.directionsButton:hover {
+  background: var(--primary-green-dark);
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .mapContainer {
+    height: 400px;
+    margin-top: 2rem;
+  }
+
+  .mapOverlay {
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .locationCard {
+    flex-direction: column;
+    padding: 1.25rem;
+  }
+
+  .locationIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .locationInfo h4 {
+    font-size: 1rem;
+  }
+
+  .locationInfo p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mapContainer {
+    height: 350px;
+  }
+}

@@ -1,0 +1,14 @@
+.container {
+  perspective: 1000px;
+}
+
+.animateItem {
+  opacity: 0;
+  transform: translateY(50px) rotateX(10deg);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animateItem.visible {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
+}

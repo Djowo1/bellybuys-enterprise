@@ -1,0 +1,218 @@
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mediaContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.media {
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  background-size:cover;
+  background-position: center;
+  transform: scale(1);
+}
+
+.slide.active .media {
+  transform: scale(1.1);
+}
+
+.videoOverlay,
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 129, 85, 0.5) ;
+  mix-blend-mode: multiply;
+}
+
+.content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.contentInner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  color: white;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+.slide.active .contentInner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.subtitle {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.5rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-full);
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  color:var(--primary-green);
+}
+
+.description {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+  color:white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background: white;
+  color: var(--primary-green);
+  font-weight: 600;
+  font-size: 1.05rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.primaryButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.primaryButton svg {
+  transition: transform var(--transition-fast);
+}
+
+.primaryButton:hover svg {
+  transform: translateX(4px);
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all var(--transition-base);
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+.decorativeCircle {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 1s ease-out 0.5s;
+}
+
+.slide.active .decorativeCircle {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.decorativeLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, white, transparent);
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.8s ease-out 0.7s;
+}
+
+.slide.active .decorativeLine {
+  opacity: 0.3;
+  transform: scaleX(1);
+}
+
+@media (max-width: 768px) {
+  .contentInner {
+    padding: 0 2rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .description {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .cta {
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contentInner {
+    padding: 0 1.5rem;
+  }
+}

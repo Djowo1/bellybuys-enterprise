@@ -1,0 +1,109 @@
+.story {
+  padding: 6rem 0;
+  background: var(--surface);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+}
+
+.header h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.header p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.card {
+  padding: 2.5rem 2rem;
+  background: var(--background);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px var(--shadow);
+  border-color: var(--primary-green);
+}
+
+.icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.card p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.narrative {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem;
+  background: var(--background);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+}
+
+.narrative h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.narrative p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.narrative p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .story {
+    padding: 4rem 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .narrative {
+    padding: 2rem;
+  }
+}

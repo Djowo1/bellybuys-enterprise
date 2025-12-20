@@ -1,0 +1,174 @@
+.manager {
+  max-width: 1200px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.filters {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.filterButton {
+  padding: 0.625rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.filterButton:hover {
+  border-color: var(--primary-green);
+}
+
+.filterButton.active {
+  background: var(--primary-green);
+  color: white;
+  border-color: var(--primary-green);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--border);
+  border-top-color: var(--primary-green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.blogItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.blogInfo {
+  flex: 1;
+}
+
+.blogInfo h3 {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+}
+
+.blogInfo p {
+  margin: 0 0 1rem 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.blogMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+}
+
+.approved {
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+.pending {
+  color: var(--secondary-orange);
+  font-weight: 600;
+}
+
+.blogActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.approveButton,
+.deleteButton {
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.approveButton {
+  background: var(--primary-green);
+  color: white;
+}
+
+.approveButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 135, 81, 0.3);
+}
+
+.deleteButton {
+  background: transparent;
+  color: #dc2626;
+  border: 1px solid #dc2626;
+}
+
+.deleteButton:hover {
+  background: #dc2626;
+  color: white;
+}
+
+.empty {
+  text-align: center;
+  padding: 4rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .blogItem {
+    flex-direction: column;
+  }
+
+  .blogActions {
+    width: 100%;
+  }
+
+  .approveButton,
+  .deleteButton {
+    flex: 1;
+  }
+}

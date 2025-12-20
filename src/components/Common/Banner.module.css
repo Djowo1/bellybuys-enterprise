@@ -1,0 +1,141 @@
+.banner {
+  position: relative;
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-orange));
+  color: var(--primary-green);
+  overflow: hidden;
+  background-size: cover;
+  background-position: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.content {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.content h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+  color: var(--primary-green);
+}
+
+.content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+  color:white;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.primaryButton {
+  background: white;
+  color: var(--primary-green);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.primaryButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: rgb(228, 87, 5);
+  border: 2px solid rgba(255, 255, 255, 0.3)
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.circle:nth-child(1) {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  left: -150px;
+  animation: float 8s ease-in-out infinite;
+}
+
+.circle:nth-child(2) {
+  width: 200px;
+  height: 200px;
+  bottom: -100px;
+  right: 10%;
+  animation: float 6s ease-in-out infinite 1s;
+}
+
+.circle:nth-child(3) {
+  width: 150px;
+  height: 150px;
+  top: 20%;
+  right: -75px;
+  animation: float 7s ease-in-out infinite 2s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) scale(1.05);
+  }
+}
+
+@media (max-width: 640px) {
+  .banner {
+    padding: 4rem 0;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+}

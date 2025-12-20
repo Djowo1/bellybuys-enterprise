@@ -1,0 +1,385 @@
+/* src/components/Layout/Navbar.module.css */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  background: var(--background);
+  transition: all var(--transition-base);
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+[data-theme="dark"] .navbar.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  z-index: 2;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoImage {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+transform-origin: center;
+  animation: logoMotion 18s infinite ease-in-out;
+}
+
+.logo:hover .logoImage {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.logoName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: var(--primary-green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.logoSubtext {
+  font-size: 0.625rem;
+  color: orange;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.125rem;
+}
+
+/* Desktop Navigation */
+.desktopNav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  position: relative;
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  border-radius: var(--radius-md);
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-green), var(--secondary-orange));
+  transition: transform var(--transition-base);
+}
+
+.navLink:hover {
+  color: var(--primary-green);
+}
+
+.navLink:hover::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.navLink.active {
+  color: var(--primary-green);
+  background: var(--surface);
+}
+
+.navLink.active::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Nav Actions */
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ctaButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+  color: white;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  box-shadow: 0 4px 12px rgba(0, 135, 81, 0.3);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 135, 81, 0.4);
+  background: linear-gradient(135deg, var(--primary-green-dark), var(--primary-green));
+}
+
+.ctaButton svg {
+  transition: transform var(--transition-fast);
+}
+
+.ctaButton:hover svg {
+  transform: translateX(4px);
+}
+
+/* Mobile Actions */
+.mobileActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  position: relative;
+  width: 30px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2;
+}
+
+.hamburger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+}
+
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+
+.hamburger span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hamburger span:nth-child(3) {
+  bottom: 0;
+}
+
+.hamburger.active span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.hamburger.active span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 768px) {
+  .container {
+    padding: 1.25rem 2rem;
+  }
+
+  .logoImage {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logoName {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desktopNav {
+    display: flex;
+  }
+
+  .mobileActions {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navLinks {
+    gap: 1rem;
+  }
+
+  .navLink {
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.875rem 1rem;
+  }
+
+  .logoImage {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logoName {
+    font-size: 1.25rem;
+  }
+
+  .logoSubtext {
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .logoImage {
+    width: 35px;
+    height: 35px;
+  }
+
+  .logoName {
+    font-size: 1.1rem;
+  }
+}
+
+/* Ultra Small Screens */
+@media (max-width: 200px) {
+  .logoText {
+    display: none;
+  }
+
+  .container {
+    padding: 0.5rem;
+  }
+}
+
+.adminButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  transition: all var(--transition-base);
+}
+
+.adminButton:hover {
+  background: var(--primary-green);
+  color: white;
+  border-color: var(--primary-green);
+  transform: scale(1.05);
+}
+
+
+@keyframes logoMotion {
+  /* Very short idle */
+  0%,
+  8% {
+    transform: rotate(0deg);
+  }
+
+  /* Smooth tilt-in */
+  10% {
+    transform: rotate(-3deg);
+  }
+  12% {
+    transform: rotate(3deg);
+  }
+
+  /* Main vibration loop (LONG) */
+  14% {
+    transform: rotate(-5deg) translateX(-1px);
+  }
+  20% {
+    transform: rotate(5deg) translateX(1px);
+  }
+  26% {
+    transform: rotate(-5deg) translateX(-1px);
+  }
+  32% {
+    transform: rotate(5deg) translateX(1px);
+  }
+  38% {
+    transform: rotate(-4deg) translateX(-1px);
+  }
+  44% {
+    transform: rotate(4deg) translateX(1px);
+  }
+  50% {
+    transform: rotate(-4deg) translateX(-1px);
+  }
+  56% {
+    transform: rotate(4deg) translateX(1px);
+  }
+
+  /* Gentle settle */
+  62% {
+    transform: rotate(0deg);
+  }
+
+  /* Short rest only */
+  64%,
+  100% {
+    transform: rotate(0deg);
+  }
+}

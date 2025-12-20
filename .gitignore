@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+.env*.local
 
 # vercel
 .vercel
@@ -39,3 +40,38 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
+
+
+
+
+
+# youve not given me the followings:
+
+# 1. app/admin/page.js
+# 2. app/api/reviews/routes.js
+# 3. app/api/send-email/routes.js
+# 4. app/blog/[slug]/page.js
+# 5. components/3D/Food3DModel.jsx
+# 6. components/3D/ParticleBackground.jsx
+# 7. components/Layout/Footer.jsx
+# 8. components/Layout/Footer.module.css
+# 9. components/Layout/MobileMenu.jsx
+# 10. components/Layout/MobileMenu.module.css
+# 11. components/UI/ThemeProvider.modules.css
+# 12. components/UI/ThemeToogle.jsx
+# 13. components/UI/ThemeToogle.module.css
+# 14. hooks/useTheme.js
+# 15.  components/lib/seo.js
+# 16.  components/styles/variable.module.css
+# 17. components/utils/animations.js

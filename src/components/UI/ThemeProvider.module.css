@@ -1,0 +1,12 @@
+/* ThemeProvider doesn't need its own CSS module as it's a context provider */
+/* All theme-related styles are in globals.css */
+
+/* However, if you want transition effects when switching themes: */
+
+:root {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
