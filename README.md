@@ -4,21 +4,21 @@ Premium Next.js website for BellyBuys Enterprise - A food service and catering c
 
 ## Features
 
-✅ Responsive design (50px to 4K screens)
-✅ Dark/Light/System theme toggle
-✅ Hero section with video slideshow
-✅ Interactive food menu with modals
-✅ Contact form with email integration
-✅ WhatsApp redirect functionality
-✅ Blog system with admin approval
-✅ Customer reviews with star ratings
-✅ Portfolio gallery with lightbox
-✅ Admin dashboard with analytics
-✅ Firebase backend integration
-✅ SEO optimized
-✅ 3D scroll animations
-✅ Mobile-first approach
-✅ Full accessibility support
+ Responsive design (50px to 4K screens)
+ Dark/Light/System theme toggle
+ Hero section with video slideshow
+ Interactive food menu with modals
+ Contact form with email integration
+ WhatsApp redirect functionality
+ Blog system with admin approval
+ Customer reviews with star ratings
+ Portfolio gallery with lightbox
+ Admin dashboard with analytics
+ Firebase backend integration
+ SEO optimized
+ 3D scroll animations
+ Mobile-first approach
+ Full accessibility support
 
 ## Tech Stack
 
