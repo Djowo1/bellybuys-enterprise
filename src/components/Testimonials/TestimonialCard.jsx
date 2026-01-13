@@ -33,10 +33,10 @@ export default function TestimonialCard({ review }) {
         </div>
       </div>
 
-      <p className={styles.text}>{review.text}</p>
+      <p className={styles.text}>{review.testimony} {review.text}</p>
 
       <div className={styles.footer}>
-        {review.service && <span className={styles.service}>{review.service}</span>}
+        {review.service && <span className={styles.service}>{review.details}</span>}
         <span className={styles.date}>{formatDate(review.createdAt)}</span>
       </div>
     </div>

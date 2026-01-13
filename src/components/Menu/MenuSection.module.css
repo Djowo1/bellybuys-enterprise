@@ -72,6 +72,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
+  max-height: fit-content;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.menu-cards {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 @media (max-width: 768px) {
@@ -79,9 +88,9 @@
     padding: 4rem 0;
   }
 
-  .grid {
+  .menu-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 10px;
   }
 
   .filters {
@@ -91,5 +100,9 @@
   .filterButton {
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
+  }
+
+  .grid {
+    max-height: fit-content;
   }
 }

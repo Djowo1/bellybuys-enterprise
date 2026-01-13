@@ -1,0 +1,27 @@
+.pageTransition {
+  width: 100%;
+  min-height: 100vh;
+  transition: opacity 300ms ease, transform 350ms cubic-bezier(.2,.8,.2,1);
+}
+
+.enter {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.exit {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* Scroll reveal helper - add 'reveal' class to elements and use your existing intersection hook */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 420ms ease, transform 420ms cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

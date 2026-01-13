@@ -2,25 +2,29 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { loginAdmin } from '../../lib/firebase';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../UI/Modal';
 import styles from './AdminLogin.module.css';
 
 export default function AdminLogin() {
-  const [secretKey, setSecretKey] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { modalState, showModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
 
-    // Simulate authentication - replace with actual auth
-    if (secretKey === process.env.NEXT_PUBLIC_ADMIN_SECRET) {
+    // Use the business email from env and the entered password
+    const adminEmail = process.env.NEXT_PUBLIC_BUSINESS_EMAIL;
+    const result = await loginAdmin(adminEmail, password);
+    if (result.success) {
       localStorage.setItem('adminAuth', 'authenticated');
       router.push('/admin/dashboard');
     } else {
-      setError('Invalid secret key. Please try again.');
+      await showModal('Login Failed', result.error, 'error');
       setIsLoading(false);
     }
   };
@@ -41,28 +45,17 @@ export default function AdminLogin() {
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
-            <label htmlFor="secretKey">Secret Key</label>
+            <label htmlFor="password">Admin Password</label>
             <input
               type="password"
-              id="secretKey"
-              value={secretKey}
-              onChange={(e) => setSecretKey(e.target.value)}
-              placeholder="Enter admin secret key"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter admin password"
               required
-              autoComplete="off"
+              autoComplete="current-password"
             />
           </div>
-
-          {error && (
-            <div className={styles.error}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="15" y1="9" x2="9" y2="15"/>
-                <line x1="9" y1="9" x2="15" y2="15"/>
-              </svg>
-              <span>{error}</span>
-            </div>
-          )}
 
           <button type="submit" disabled={isLoading} className={styles.submitButton}>
             {isLoading ? (
@@ -83,9 +76,17 @@ export default function AdminLogin() {
         </form>
 
         <div className={styles.footer}>
-          <p>Lost your secret key? Contact the system administrator.</p>
+          <p>Forgot your password? Contact the system administrator.</p>
         </div>
       </div>
+
+      <Modal
+        isOpen={modalState.isOpen}
+        onClose={modalState.onClose}
+        title={modalState.title}
+        message={modalState.message}
+        type={modalState.type}
+      />
     </div>
   );
 }

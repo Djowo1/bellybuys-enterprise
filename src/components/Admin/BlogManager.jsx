@@ -15,8 +15,13 @@ export default function BlogManager({ onUpdate }) {
 
   const loadBlogs = async () => {
     setLoading(true);
-    const fetchedBlogs = await getBlogs(false);
-    setBlogs(fetchedBlogs);
+    try {
+      const fetchedBlogs = await getBlogs(false);
+      setBlogs(fetchedBlogs);
+    } catch (error) {
+      console.error('Error loading blogs:', error);
+      setBlogs([]);
+    }
     setLoading(false);
   };
 

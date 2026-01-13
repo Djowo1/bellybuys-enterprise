@@ -188,6 +188,17 @@ input, textarea, select {
   }
 }
 
+@media (max-width: 768px) {
+  .container { flex-direction: column; padding: 10px; }
+  img { width: 100%; height: auto; }
+  .chart { width: 100%; height: 300px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 14px; }
+  .navbar { flex-direction: column; }
+}
+
 /* Section Spacing */
 section {
   padding: var(--spacing-2xl) 0;
@@ -347,6 +358,36 @@ section {
 *:focus-visible {
   outline: 2px solid var(--primary-green);
   outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    padding: 0 1rem;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+  .navbar {
+    flex-direction: column;
+  }
+  .chart {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
+  .menu-card {
+    padding: 10px;
+  }
 }
 
 /* Print Styles */

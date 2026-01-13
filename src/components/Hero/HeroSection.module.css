@@ -144,7 +144,12 @@
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 500px;
+    height: 100vh;
+    min-height: 100vh;
+  }
+
+  .slidesContainer {
+    height: 100vh;
   }
 
   .navButton {

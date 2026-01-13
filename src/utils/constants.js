@@ -54,7 +54,7 @@ export const SERVICES = [
     features: ['Same-day delivery', 'Package tracking', 'Secure handling', 'Affordable rates'],
     operatingHours: 'Friday - Sunday',
     icon: '',
-    image: '/images/services/logistics.jpg',
+    image: '/images/services/logistics-1.jpg',
     cta: 'Schedule Pickup'
   },
   {
@@ -364,3 +364,56 @@ export const ANIMATION_VARIANTS = {
     }
   }
 };
+
+export const PRESET_REVIEWS = [
+  {
+    id: 'preset-1',
+    name: 'Adebayo Johnson',
+    rating: 5,
+    testimony: 'BellyBuys really does the most, when it comes to food, from the quick response to the speedy delivery, the thoughful packaging and the mouth-watering taste. Every step is an amazing experienece. Truely top-notch service all the way.  I recommend BellyBuys with my full chest, they never miss!!!!',
+    details: 'Wedding catering for 150 guests',
+    date: '2025-12-15',
+    time: '14:30',
+    createdAt: new Date('2025-12-15T14:30:00Z')
+  },
+  {
+    id: 'preset-2',
+    name: 'Funmi Adeolu',
+    rating: 5,
+    testimony: 'Thank you so much for building a good reputation for ogbono soup. Also the pepper soup is nice, thank you so much. It paired so well with my rice',
+    details: 'Weekly meal subscription',
+    date: '2025-11-20',
+    time: '10:15',
+    createdAt: new Date('2025-11-20T10:15:00Z')
+  },
+  {
+    id: 'preset-3',
+    name: 'Chike Okafor',
+    rating: 4,
+    testimony: 'E too seet!!! The food always hit the right spot. Thanks BellyBuys for your services',
+    details: 'Private dinner for 6',
+    date: '2025-10-05',
+    time: '19:45',
+    createdAt: new Date('2025-10-05T19:45:00Z')
+  },
+  {
+    id: 'preset-4',
+    name: 'Ngozi Eze',
+    rating: 5,
+    testimony: 'Thank you dear, I deeply appreciate the kindness and coming through for me when I needed your assistance on the rental service your brand offered. God bless you and continue to uplift your brand. BELLYBUYS TO THE WORLD!!!!',
+    details: 'Corporate lunch for 50',
+    date: '2025-09-12',
+    time: '12:00',
+    createdAt: new Date('2025-09-12T12:00:00Z')
+  },
+  {
+    id: 'preset-5',
+    name: 'Tunde Bakare',
+    rating: 4,
+    testimony: 'That your vegetable soup is plenty!! After I use am chop the food wey follow am come, my friend do eba, use the remaining soup chop am and no be say i manage food o. Nice one',
+    details: 'Bulk delivery',
+    date: '2025-08-28',
+    time: '16:20',
+    createdAt: new Date('2025-08-28T16:20:00Z')
+  }
+];

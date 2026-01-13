@@ -66,7 +66,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   max-height: 90vh;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .mediaSection {
@@ -162,8 +162,7 @@
 
 .infoSection {
   padding: 2.5rem;
-  overflow-y: auto;
-  max-height: 90vh;
+  overflow-y: visible;
 }
 
 .header {
@@ -304,12 +303,13 @@
 
 @media (max-width: 480px) {
   .modalOverlay {
-    padding: 0;
+    padding: 0.5rem;
   }
 
   .modal {
-    max-height: 100vh;
-    border-radius: 0;
+    max-height: 95vh;
+    border-radius: var(--radius-xl);
+    overflow-y: auto;
   }
 
   .infoSection {
@@ -322,5 +322,24 @@
 
   .actions {
     flex-direction: column;
+  }
+}
+
+/* Responsive for small screens */
+@media (max-width: 800px) {
+  .modal {
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .infoSection {
+    overflow-y: visible;
   }
 }

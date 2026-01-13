@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import Navbar from '@/components/Layout/Navbar';
 import Footer from '@/components/Layout/Footer';
 import ThemeProvider from '@/components/UI/ThemeProvider';
+import PageTransition from '@/components/Layout/PageTransition';
 import { BUSINESS_INFO } from '@/utils/constants';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
@@ -128,7 +129,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <ThemeProvider>
           <Navbar />
-          <main>{children}</main>
+          <main>
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
         </ThemeProvider>
       </body>

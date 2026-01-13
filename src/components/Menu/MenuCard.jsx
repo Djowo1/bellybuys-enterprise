@@ -13,7 +13,23 @@ export default function MenuCard({ item }) {
 
   return (
     <>
-      <div className={styles.card} onClick={() => setIsModalOpen(true)}>
+      <div 
+        className={styles.card} 
+        onClick={() => setIsModalOpen(true)}
+        onTouchEnd={(e) => {
+          e.preventDefault();
+          setIsModalOpen(true);
+        }}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setIsModalOpen(true);
+          }
+        }}
+        aria-label={`View details for ${item.name}`}
+      >
         {item.popular && <span className={styles.badge}>Popular</span>}
         
         <div className={styles.imageContainer}>

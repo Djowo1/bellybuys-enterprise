@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import AdminRedirect from '@/components/Admin/AdminRedirect';
 
 export const metadata = {
   title: 'Admin | BellyBuys Enterprise',
@@ -6,6 +6,7 @@ export const metadata = {
 };
 
 export default function AdminPage() {
-  // Redirect to login page
-  redirect('/admin/login');
+  // Keep this as a server component (no "use client" here)
+  // Render a small client redirect component to avoid exporting metadata from a client module
+  return <AdminRedirect />;
 }

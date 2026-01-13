@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import styles from './ReviewForm.module.css';
 import { createReview } from '@/lib/firebase';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../UI/Modal';
 
 export default function ReviewForm({ onClose, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -14,6 +16,7 @@ export default function ReviewForm({ onClose, onSuccess }) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const { modalState, showModal } = useModal();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +42,7 @@ export default function ReviewForm({ onClose, onSuccess }) {
       const result = await createReview(reviewData);
 
       if (result.success) {
-        alert('Thank you for your review!');
+        await showModal('Thank You!', 'Thank you for your review!', 'success');
         onSuccess();
         onClose();
       } else {
@@ -160,6 +163,14 @@ export default function ReviewForm({ onClose, onSuccess }) {
           </button>
         </form>
       </div>
+
+      <Modal
+        isOpen={modalState.isOpen}
+        onClose={modalState.onClose}
+        title={modalState.title}
+        message={modalState.message}
+        type={modalState.type}
+      />
     </div>
   );
 }

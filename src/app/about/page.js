@@ -1,5 +1,10 @@
+import dynamic from 'next/dynamic';
 import AboutSection from '@/components/About/AboutSection';
-import AboutStory from '@/components/About/AboutStory';
+
+// Lazy load AboutStory since it's below the fold
+const AboutStory = dynamic(() => import('@/components/About/AboutStory'), {
+  loading: () => <div style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading...</div>
+});
 
 export const metadata = {
   title: 'About Us | BellyBuys Enterprise',

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import MotionReveal from '../UI/MotionReveal';
 import styles from './PortfolioSection.module.css';
 import PortfolioGallery from './PortfolioGallery';
 
@@ -66,28 +67,30 @@ export default function PortfolioSection() {
     : portfolioItems.filter(item => item.category === activeCategory);
 
   return (
-    <section className={styles.portfolio} id="portfolio">
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <span className={styles.badge}>Our Work</span>
-          <h2>Portfolio Gallery</h2>
-          <p>Explore our culinary creations and successful events</p>
-        </div>
+    <MotionReveal direction="up" distance={50} delay={0.5}>
+      <section className={styles.portfolio} id="portfolio">
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <span className={styles.badge}>Our Work</span>
+            <h2>Portfolio Gallery</h2>
+            <p>Explore our culinary creations and successful events</p>
+          </div>
 
-        <div className={styles.filters}>
-          {categories.map(category => (
-            <button
-              key={category}
-              className={`${styles.filterButton} ${activeCategory === category ? styles.active : ''}`}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+          <div className={styles.filters}>
+            {categories.map(category => (
+              <button
+                key={category}
+                className={`${styles.filterButton} ${activeCategory === category ? styles.active : ''}`}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
 
-        <PortfolioGallery items={filteredItems} />
-      </div>
-    </section>
+          <PortfolioGallery items={filteredItems} />
+        </div>
+      </section>
+    </MotionReveal>
   );
 }

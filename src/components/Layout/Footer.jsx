@@ -18,7 +18,7 @@ export default function Footer() {
           <div className={styles.section}>
             <div className={styles.logoSection}>
               <Image
-                src="/images/logo.png"
+                src="/images/logo-3.png"
                 alt="BellyBuys Logo"
                 width={60}
                 height={60}

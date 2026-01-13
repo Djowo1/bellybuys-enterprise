@@ -1,4 +1,5 @@
 import emailjs from '@emailjs/browser';
+import { createOrder } from './firebase';
 
 export async function sendOrderEmail(formData) {
   try {
@@ -20,6 +21,18 @@ export async function sendOrderEmail(formData) {
     );
 
     if (response.status === 200) {
+      // Create order in database
+      const orderData = {
+        customerName: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message,
+        eventDate: formData.eventDate || null
+      };
+      
+      await createOrder(orderData);
+
       // Prepare WhatsApp message
       const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace('+', '');
       const whatsappMsg = `Hi BellyBuys! I've sent an order request.\n\nName: ${formData.name}\nService: ${formData.service}\n\nLooking forward to hearing from you!`;

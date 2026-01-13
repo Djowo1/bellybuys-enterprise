@@ -1,7 +1,7 @@
 .dashboard {
   display: flex;
   min-height: 100vh;
-  background: var(--background);
+  background: linear-gradient(135deg, var(--background) 0%, var(--surface) 100%);
 }
 
 .sidebar {
@@ -13,19 +13,20 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
   padding: 2rem;
   border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+  color: white;
 }
 
 .logo h2 {
   margin: 0;
   font-size: 1.5rem;
-  background: linear-gradient(135deg, var(--primary-green), var(--secondary-orange));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 700;
 }
 
 .nav {
@@ -43,15 +44,250 @@
   padding: 0.875rem 1rem;
   background: transparent;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   color: var(--text-primary);
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-base);
-  text-align: left;
   position: relative;
+  overflow: hidden;
 }
 
+.navButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.navButton:hover::before {
+  left: 100%;
+}
+
+.navButton:hover {
+  background: var(--primary-green);
+  color: rgb(11, 179, 86);
+  transform: translateX(4px);
+}
+
+.navButton.active {
+  background: var(--primary-green);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 135, 81, 0.3);
+}
+
+.badge {
+  background: var(--secondary-orange);
+  color: white;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.logoutButton {
+  margin: 1rem;
+  padding: 0.875rem 1rem;
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoutButton:hover {
+  background: var(--primary-green);
+  transform: translateY(-2px);
+}
+
+.main {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.overview h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.statCard {
+  padding: 1.5rem;
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.statCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary-green);
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.statIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+  color: white;
+}
+
+.statCard:nth-child(2) .statIcon {
+  background: linear-gradient(135deg, var(--secondary-orange), #d97706);
+}
+
+.statCard:nth-child(3) .statIcon {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.statCard:nth-child(4) .statIcon {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.statCard p {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.statCard h3 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 1rem;
+  }
+
+  .navButton {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .logoutButton {
+    margin: 1rem;
+    align-self: flex-start;
+  }
+
+  .main {
+    padding: 1rem;
+  }
+
+  .overview h1 {
+    font-size: 2rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    padding: 1.5rem;
+  }
+
+  .logo h2 {
+    font-size: 1.25rem;
+  }
+
+  .nav {
+    padding: 1rem 0.5rem;
+  }
+
+  .navButton {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .main {
+    padding: 0.5rem;
+  }
+
+  .overview h1 {
+    font-size: 1.75rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statCard {
+    padding: 1rem;
+  }
+
+  .statIcon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .statCard h3 {
+    font-size: 1.5rem;
+  }
+}
+  
 .navButton:hover {
   background: var(--background);
 }
@@ -78,18 +314,20 @@
   justify-content: center;
   gap: 0.75rem;
   padding: 0.875rem 1rem;
-  background: transparent;
+  background:whitesmoke;
   border: 2px solid var(--border);
   border-radius: var(--radius-md);
   color: var(--text-primary);
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-base);
+  color: #028333;
 }
 
 .logoutButton:hover {
-  border-color: #dc2626;
-  color: #dc2626;
+ 
+ background:var(--primary-green);
+  color:white;
 }
 
 .main {

@@ -1,17 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['firebasestorage.googleapis.com'],
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+      },
       {
         protocol: 'https',
         hostname: '**',
       },
     ],
   },
-  experimental: {
-    optimizeCss: true,
-  },
+  // Enable SWC compiler optimizations
+  swcMinify: true,
 }
 
 module.exports = nextConfig

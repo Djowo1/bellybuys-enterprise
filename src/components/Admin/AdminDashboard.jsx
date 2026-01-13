@@ -5,10 +5,12 @@ import { useRouter } from 'next/navigation';
 import styles from './AdminDashboard.module.css';
 import BlogManager from './BlogManager';
 import Analytics from './Analytics';
+import Profile from './Profile';
 import { getBlogs, getOrders, getReviews } from '@/lib/firebase';
+import { logoutAdmin } from '@/lib/firebase';
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState('analytics');
   const [stats, setStats] = useState({
     blogs: 0,
     pendingBlogs: 0,
@@ -22,22 +24,35 @@ export default function AdminDashboard() {
   }, []);
 
   const loadStats = async () => {
-    const [allBlogs, orders, reviews] = await Promise.all([
-      getBlogs(false),
-      getOrders(),
-      getReviews()
-    ]);
+    try {
+      const [allBlogs, orders, reviews] = await Promise.all([
+        getBlogs(false),
+        getOrders(),
+        getReviews()
+      ]);
 
-    setStats({
-      blogs: allBlogs.filter(b => b.approved).length,
-      pendingBlogs: allBlogs.filter(b => !b.approved).length,
-      orders: orders.length,
-      reviews: reviews.length
-    });
+      setStats({
+        blogs: allBlogs.filter(b => b.approved).length,
+        pendingBlogs: allBlogs.filter(b => !b.approved).length,
+        orders: orders.length,
+        reviews: reviews.length
+      });
+    } catch (error) {
+      console.error('Error loading stats:', error);
+      // Set default stats or show error
+      setStats({
+        blogs: 0,
+        pendingBlogs: 0,
+        orders: 0,
+        reviews: 0
+      });
+    }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await logoutAdmin();
     localStorage.removeItem('adminAuth');
+    localStorage.removeItem('adminProfile');
     router.push('/admin/login');
   };
 
@@ -50,16 +65,15 @@ export default function AdminDashboard() {
 
         <nav className={styles.nav}>
           <button
-            className={`${styles.navButton} ${activeTab === 'overview' ? styles.active : ''}`}
-            onClick={() => setActiveTab('overview')}
+            className={`${styles.navButton} ${activeTab === 'analytics' ? styles.active : ''}`}
+            onClick={() => setActiveTab('analytics')}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="3" width="7" height="7"/>
-              <rect x="14" y="3" width="7" height="7"/>
-              <rect x="14" y="14" width="7" height="7"/>
-              <rect x="3" y="14" width="7" height="7"/>
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
             </svg>
-            Overview
+            Overview & Analytics
           </button>
 
           <button
@@ -77,15 +91,14 @@ export default function AdminDashboard() {
           </button>
 
           <button
-            className={`${styles.navButton} ${activeTab === 'analytics' ? styles.active : ''}`}
-            onClick={() => setActiveTab('analytics')}
+            className={`${styles.navButton} ${activeTab === 'profile' ? styles.active : ''}`}
+            onClick={() => setActiveTab('profile')}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="18" y1="20" x2="18" y2="10"/>
-              <line x1="12" y1="20" x2="12" y2="4"/>
-              <line x1="6" y1="20" x2="6" y2="14"/>
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
             </svg>
-            Analytics
+            Profile
           </button>
         </nav>
 
@@ -161,6 +174,7 @@ export default function AdminDashboard() {
 
         {activeTab === 'blogs' && <BlogManager onUpdate={loadStats} />}
         {activeTab === 'analytics' && <Analytics stats={stats} />}
+        {activeTab === 'profile' && <Profile />}
       </main>
     </div>
   );

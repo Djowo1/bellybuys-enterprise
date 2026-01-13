@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { uploadImage, createBlog } from '@/lib/firebase';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../UI/Modal';
 import styles from './BlogForm.module.css';
 
 export default function BlogForm({ onClose, onSuccess }) {
@@ -16,6 +18,7 @@ export default function BlogForm({ onClose, onSuccess }) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const { modalState, showModal } = useModal();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,9 +42,13 @@ export default function BlogForm({ onClose, onSuccess }) {
 
       // Upload image if file selected
       if (formData.imageFile) {
-        const uploadResult = await uploadImage(formData.imageFile, 'blog-images');
+        const uploadResult = await uploadImage(formData.imageFile, 'blogs');
         if (uploadResult.success) {
           imageUrl = uploadResult.url;
+        } else {
+          setError('Image upload failed: ' + uploadResult.error);
+          setIsSubmitting(false);
+          return;
         }
       }
 
@@ -57,7 +64,7 @@ export default function BlogForm({ onClose, onSuccess }) {
       const result = await createBlog(blogData);
 
       if (result.success) {
-        alert('Blog post submitted! It will be visible after admin approval.');
+        await showModal('Success!', 'Blog post submitted! It will be visible after admin approval.', 'success');
         onSuccess();
         onClose();
       } else {
@@ -215,6 +222,14 @@ export default function BlogForm({ onClose, onSuccess }) {
           </p>
         </form>
       </div>
+
+      <Modal
+        isOpen={modalState.isOpen}
+        onClose={modalState.onClose}
+        title={modalState.title}
+        message={modalState.message}
+        type={modalState.type}
+      />
     </div>
   );
 }
