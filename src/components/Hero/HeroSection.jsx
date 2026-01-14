@@ -117,7 +117,7 @@ export default function HeroSection() {
           <div className={styles.scrollMouse}>
             <div className={styles.scrollWheel}></div>
           </div>
-          <span>Scroll to explore</span>
+          <span>Scroll down to explore BellyBuys features</span>
         </div>
       </section>
     </MotionReveal>

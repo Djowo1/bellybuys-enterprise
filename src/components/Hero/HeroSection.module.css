@@ -4,6 +4,7 @@
   height: 100vh;
   min-height: 600px;
   overflow: hidden;
+  margin-bottom:50px;
 }
 
 .slidesContainer {
@@ -50,7 +51,7 @@
 
 .indicators {
   position: absolute;
-  bottom: 3rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
