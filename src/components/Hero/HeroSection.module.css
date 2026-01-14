@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   min-height: 600px;
   overflow: hidden;
 }
@@ -146,6 +146,8 @@
   .hero {
     height: 100vh;
     min-height: 100vh;
+    margin-top:-150px;
+  margin-bottom:-120px;
   }
 
   .slidesContainer {
@@ -166,7 +168,7 @@
   }
 
   .indicators {
-    bottom: 2rem;
+   bottom: 13rem;
   }
 
   .scrollIndicator {
