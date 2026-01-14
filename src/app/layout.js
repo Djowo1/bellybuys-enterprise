@@ -3,6 +3,7 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Navbar from '@/components/Layout/Navbar';
 import Footer from '@/components/Layout/Footer';
+import FloatingOrderButton from '@/components/UI/FloatingOrderButton';
 import ThemeProvider from '@/components/UI/ThemeProvider';
 import PageTransition from '@/components/Layout/PageTransition';
 import { BUSINESS_INFO } from '@/utils/constants';
@@ -133,6 +134,7 @@ export default function RootLayout({ children }) {
             <PageTransition>{children}</PageTransition>
           </main>
           <Footer />
+          <FloatingOrderButton />
         </ThemeProvider>
       </body>
     </html>
