@@ -80,7 +80,7 @@ export default function RootLayout({ children }) {
     '@context': 'https://schema.org',
     '@type': 'Restaurant',
     name: BUSINESS_INFO.name,
-    image: 'https://bellybuys.com/images/logo.png',
+    image: 'https://bellybuys.com/images/logo-3.png',
     '@id': 'https://bellybuys.com',
     url: 'https://bellybuys.com',
     telephone: BUSINESS_INFO.phone,
@@ -117,8 +117,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/images/logo-3.png" sizes="any" />
+        <link rel="apple-touch-icon" href="/images/logo-3.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#008751" />
         <script
