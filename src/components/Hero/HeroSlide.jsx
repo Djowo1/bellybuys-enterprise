@@ -37,9 +37,10 @@ export default function HeroSlide({ slide, isActive, direction }) {
           </>
         ) : (
           <>
-            <div
+            <img
+              src={slide.media.src}
+              alt={slide.title}
               className={styles.media}
-              style={{ backgroundImage: `url(${slide.media.src})` }}
             />
             <div className={styles.imageOverlay} />
           </>

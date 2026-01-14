@@ -16,10 +16,6 @@ export default function MenuCard({ item }) {
       <div 
         className={styles.card} 
         onClick={() => setIsModalOpen(true)}
-        onTouchEnd={(e) => {
-          e.preventDefault();
-          setIsModalOpen(true);
-        }}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
