@@ -94,6 +94,8 @@ export const getBlogs = async (approvedOnly = true) => {
   }
 };
 
+
+
 export const updateBlog = async (blogId, updateData) => {
   try {
     const { doc: docFn, updateDoc, serverTimestamp } = await import('firebase/firestore');
